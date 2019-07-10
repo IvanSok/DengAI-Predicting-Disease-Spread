@@ -164,10 +164,12 @@ test_features <- read_csv("Datasets/Test_set_features.csv")
 test_rf$year <- test_features$year
 
 rf_submission <- dplyr::select(.data = test_rf, city, year, weekofyear, total_cases )
+rf_submission$total_cases <- round(rf_submission$total_cases)
 write_csv(rf_submission, "rf_submission.csv")
 
 test_svm$year <- test_features$year
 svm_submission <- dplyr::select(.data = test_svm, city, year, weekofyear, total_cases )
+svm_submission$total_cases <- round(svm_submission$total_cases)
 write_csv(svm_submission, "svm_submission.csv")
 
 ###############################################################################
